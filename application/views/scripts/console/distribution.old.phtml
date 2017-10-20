@@ -1,0 +1,192 @@
+
+	<h1>Distributions <span id="alert">Your distribution was successfully created. View your <a href="#">new distribution</a></span></h1>
+	<div id="top-actions" class="actions">
+		<input type="submit" value="Create a distribution" onclick="showForm('new-distribution')"/>
+		<input type="submit" value="Disable checked" disabled />
+		<input type="submit" value="Enable checked" disabled />
+	</div><!-- /#top-actions -->
+	<table class="data">
+		<tr class="header">
+			<td><!-- <input id="all" type="checkbox" /> --></td>
+			<td>Name</td>
+			<td>Country</td>
+			<td>Number of Stores</td>
+			<td>Offers Being Served</td>
+			<td>Status</td>
+		</tr>
+
+<?php
+if (is_array($this->offers) && count($this->offers) > 0)
+{
+	foreach ($this->offers as $offer)
+	{
+?>
+		<tr>
+			<td><input type="checkbox" disabled /></td>
+			<td><?php echo substr((isset($offer['offer_head']) ? $offer['offer_head'] : 'N/A'),0,30) ?></td>
+			<td><?php echo (isset($offer['offer_code']) ? $offer['offer_code'] : 'N/A') ?></td>
+			<td><?php echo substr((isset($offer['offer_link']) ? $offer['offer_link'] : 'N/A'),0,30) ?></td>
+			<td><?php echo (isset($offer['created']) ? $offer['created'] : 'N/A') ?></td>
+			<td><?php echo (isset($offer['expires']) ? $offer['expires'] : 'N/A') ?></td>
+			<td><?php echo (isset($offer['status']) ? $offer['status'] : 'N/A') ?></td>
+		</tr>
+<?php
+	}
+}
+else
+{
+?>
+		<tr><td colspan="10">you don't have any active offers</td></tr>
+<?php 
+}
+?>
+
+	</table>
+
+
+
+<div id="new-offer" style="display:<?php echo ($this->save_error ? "block" : "none") ?>">
+<h1>New Offer</h1>
+
+<?php echo $this->message ?>
+<?php echo $this->error ?>
+
+<form name="offer" method="POST" action="/console/offers">
+
+<table id="new-offer-form" class="form">
+	<tr><td class="label">Offer Title:</td>
+		<td class="value"><?php echo $this->ot ?></td>
+	</tr>
+	<tr>
+		<td class="label">Description:</td>
+		<td class="value"><?php echo $this->ob ?></td>
+	</tr>
+	<tr>
+		<td class="label">Expiration:</td>
+		<td class="value"><?php echo $this->oe ?></td>
+	</tr>
+	<tr>
+		<td class="label">Offer Code:</td>
+		<td class="value">
+						  <?php echo $this->oc ?>
+	</tr>
+	<tr>
+		<td class="label">Website Link:</td>
+		<td class="value"><?php echo $this->ol ?></td>
+	</tr>
+</table><!-- /#new-offer-form -->
+
+<div id="new-store-actions" class="actions">
+	<input type="submit" name="save_offer" value="Create Your Offer" onclick="hideForm('new-offer')" />
+	<input type="button" value="Cancel" onclick="hideForm('new-offer')" />
+</div><!-- /#top-actions -->
+
+</form>
+
+</div><!-- /#new-offer -->
+<div id="modal" style="display:<?php echo ($this->save_error ? "block" : "none") ?>"></div><!-- /#modal -->
+
+
+
+
+
+
+<div style="position:relative;width:90%;padding:10px;margin:0% 3%;border:1px solid #000;">
+
+<?php echo $this->message ?>
+
+<form name="offer" method="POST" action="/console/distribution">
+
+<fieldset>
+<legend>Which offer would you like to distribute?</legend>
+<?php echo $this->oid ?><?php echo $this->oid_error ?>
+</fieldset>
+
+<br />
+
+<fieldset>
+<legend>Where do you want the offer distributed?</legend>
+
+<?php if (($this->country_count == 1) && ($this->state_count == 1)) { ?>
+
+You have store locations in a single state or province of one country. Your offers will be distributed for all of your stores within that state.
+
+<input type="hidden" name="store_country" value="<?php echo $this->view->store_country ?>" />
+<input type="hidden" name="all_stores" value="1" />
+
+<?php } else if ($this->country_count == 0) { ?>
+
+<ul class="errors" style="margin:0px 0px 5px 0px;"><li>You have not added any store locations for offer distribution. Please go to the &quot;My Stores&quot; utility, and save at least one store location.</li></ul>
+
+<?php //} else if ($this->offer_count == 0) { ?>
+
+<ul class="errors" style="margin:0px 0px 5px 0px;"><li>Before selecting store locations for distribution, you must first create offers to distribute.</li></ul>
+
+<?php } else { ?>
+
+<?php if ($this->country_count == 1) { ?>
+
+<input type="hidden" name="store_country" value="<?php echo $this->store_country ?>" />
+
+<?php } ?>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td colspan="2">
+If you are a retailer with locations spread into different states or countries,
+then you can target offer campaigns to specific populations using the tool below.
+This is recommended for larger retail corporations, with a need to more effectively
+manage and monitor inventory control and currency exchange in their online price reduction
+strategy.
+</td></tr>
+<?php if ($this->country_count > 1) { ?>
+<tr><td colspan="2"><?php echo $this->sc ?></td></tr>
+<?php } ?>
+<tr><td colspan="2">
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr>
+<td width="1" height="28" valign="bottom"><?php echo $this->all ?></td>
+<td><strong>Check this box if the offer should be distributed for all of your store locations, regardless of state.</strong></td>
+</tr></table>
+
+</td>
+</tr><tr>
+<td><?php echo $this->cs ?></td>
+<td><?php echo $this->ss ?></td>
+</tr>
+
+<?php if ($this->country_count > 1) { ?>
+<tr><td colspan="2">NOTE: You can only distribute any one offer within the states or provinces of a single country.</td></tr>
+<?php } ?>
+
+</table>
+
+<?php } ?>
+
+</fieldset>
+
+<?php if (isset($this->use_augments)) { ?>
+
+<br />
+
+<fieldset>
+<legend>Choose one or more of these optional offer enhancements!</legend>
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr>
+<td valign="top" colspan="2"><?php echo $this->augments[0]['display']?></td>
+<td valign="top" colspan="2"><?php echo $this->augments[1]['display']?></td>
+<td valign="top" colspan="2"><?php echo $this->augments[2]['display']?></td>
+</tr><tr>
+<td width="1" height="28" valign="bottom"><?php echo $this->a1 ?></td><td><label for="p1"><strong>$ <?php echo $this->augments[0]['cost']?></strong></label></td>
+<td width="1" height="28" valign="bottom"><?php echo $this->a2 ?></td><td><label for="p2"><strong>$ <?php echo $this->augments[1]['cost']?></strong></label></td>
+<td width="1" height="28" valign="bottom"><?php echo $this->a3 ?></td><td><label for="p3"><strong>$ <?php echo $this->augments[2]['cost']?></strong></label></td>
+</tr></table>
+</fieldset>
+
+<?php } ?>
+
+<?php echo $this->button ?>
+
+</form>
+
+</div>

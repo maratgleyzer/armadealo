@@ -1,0 +1,96 @@
+
+	<h1>Offers <?php if ($this->success) { ?><span id="alert"><?php echo $this->success ?></span><?php } ?></h1>
+
+	<div id="top-actions" class="actions">
+		<input type="submit" value="Create an offer" onclick="showForm('new-offer')"/>
+<!--
+		<input type="submit" value="Edit checked" disabled />
+		<input type="submit" value="Disable checked" disabled />
+		<input type="submit" value="Enable checked" disabled />
+-->
+	</div><!-- /#top-actions -->
+	<table class="data">
+		<tr class="header">
+			<td><!-- <input id="all" type="checkbox" disabled /> --></td>
+			<td>Title</td>
+			<td>Code</td>
+			<td>Link</td>
+			<td>Created</td>
+			<td>Expires</td>
+			<td>Status</td>
+		</tr>
+
+<?php
+if (is_array($this->offers) && count($this->offers) > 0)
+{
+	foreach ($this->offers as $offer)
+	{
+?>
+		<tr>
+			<td><!-- <input type="checkbox" disabled /> --></td>
+			<td><?php echo substr((isset($offer['offer_head']) ? $offer['offer_head'] : 'N/A'),0,30) ?></td>
+			<td><?php echo (isset($offer['offer_code']) ? $offer['offer_code'] : 'N/A') ?></td>
+			<td><?php echo substr((isset($offer['offer_link']) ? $offer['offer_link'] : 'N/A'),0,30) ?></td>
+			<td><?php echo (isset($offer['created']) ? $offer['created'] : 'N/A') ?></td>
+			<td><?php echo (isset($offer['expires']) ? $offer['expires'] : 'N/A') ?></td>
+			<td><?php echo (isset($offer['status']) ? $offer['status'] : 'N/A') ?></td>
+		</tr>
+<?php
+	}
+}
+else
+{
+?>
+		<tr><td colspan="10"> - you have not created any offers to distribute - </td></tr>
+<?php 
+}
+?>
+
+	</table>
+
+
+
+<div id="new-offer" style="display:<?php echo ($this->save_error ? "block" : "none") ?>">
+<h1>Create an Offer</h1>
+
+<?php if (is_string($this->save_error)) { ?><ul class="errors"><li><?php echo $this->save_error ?></li></ul><br /><?php } ?>
+
+Create your offer using the form below. All fieds are required. Your offer will only be distrubuted for stores
+you have already added to the system. Any stores added after this offer is created will not receive this promotion.
+Make sure you've added all your stores before creating offers.
+<br /><br />
+
+<form name="offer" method="POST" action="/console/offers">
+
+<table id="new-offer-form" class="form">
+	<tr><td class="label">Offer Title:</td>
+		<td class="value"><?php echo $this->ot ?></td>
+	</tr>
+	<tr>
+		<td class="label">Description:<br /><label class="inputNote"> ( 128 char. max. ) </label></td>
+		<td class="value"><?php echo $this->ob ?></td>
+	</tr>
+	<tr>
+		<td class="label">Expiration:</td>
+		<td class="value"><?php echo $this->oe ?><label class="inputNote"> &nbsp; as in YYYY-MM-DD</label></td>
+	</tr>
+	<tr>
+		<td class="label">Offer Code:</td>
+		<td class="value">
+						  <?php echo $this->oc ?>
+	</tr>
+	<tr>
+		<td class="label">Website Link:</td>
+		<td class="value"><label class="inputNote">http://&nbsp;</label><?php echo $this->ol ?></td>
+	</tr>
+</table><!-- /#new-offer-form -->
+
+<div id="new-store-actions" class="actions">
+	<input type="submit" name="save_offer" value="Create Your Offer" onclick="hideForm('new-offer')" />
+	<input type="button" value="Cancel" onclick="hideForm('new-offer')" />
+</div><!-- /#top-actions -->
+
+</form>
+
+</div><!-- /#new-offer -->
+<div id="modal" style="display:<?php echo ($this->save_error ? "block" : "none") ?>"></div><!-- /#modal -->

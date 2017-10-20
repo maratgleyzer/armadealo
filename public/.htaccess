@@ -1,0 +1,6 @@
+AuthUserFile /usr/local/etc/.htpasswd
+AuthGroupFile /dev/null
+AuthName ARMADEALO
+AuthType Basic
+
+require XXXXXXXXXXXXX

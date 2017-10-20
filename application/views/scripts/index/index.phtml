@@ -1,0 +1,113 @@
+
+<h1>Mobile Smart Phone Coupon System</h1>
+<?php if ($this->success) { ?><div id="alert"><?php echo $this->success ?></div><?php } ?>
+Armadealo is the easiest way to market to potential customers by sending offers and discounts directly to their cell phones. This system is unique in that users receive your store offers on their cell phones as they walk by your store. The system is so simple, you can register within minutes and have offers being sent to Armadealo subscribers immediately.
+<br /><br />
+Where direct mail and direct e-mail fail, Armadealo saves the day!
+<br /><br />
+	<div id="guest">
+		<ul>
+			<li class="first-c"><a href="javascript:" onclick="showForm('new-signin')">Sign-in</a></li>
+			<li class="last-c"><a href="javascript:" onclick="showForm('new-signup')">Sign-up</a></li>
+		</ul>
+	</div><!-- /#user-nav -->
+<br /><br />
+<a href="">Need the iphone app? Click here to get it.</a>
+
+
+
+<div id="new-signin" style="display:<?php echo ($this->signin_error ? "block" : "none") ?>">
+<h1>Member Login</h1>
+
+<?php if (is_string($this->signin_error)) { ?><ul class="errors"><li><?php echo $this->signin_error ?></li></ul><br /><?php } ?>
+
+<form name="signin" method="POST" action="/">
+
+<table id="new-signin-form" class="form">
+	<tr><td class="label">eMail/Username:</td>
+		<td class="value"><?php echo $this->signin_username ?></td>
+	</tr>
+	<tr>
+		<td class="label">Password:</td>
+		<td class="value"><?php echo $this->signin_password ?></td>
+	</tr>
+</table><!-- /#new-signin-form -->
+
+<div id="new-signin-actions" class="actions">
+	<input type="submit" name="signin" value="Sign-in" onclick="hideForm('new-signin')" />
+	<input type="button" value="Cancel" onclick="hideForm('new-signin')" />
+</div><!-- /#top-actions -->
+
+</form>
+
+</div><!-- /#new-signin -->
+
+
+
+<div id="new-signup" style="display:<?php echo ($this->signup_error ? "block" : "none") ?>">
+<h1>Not a member?</h1>
+Its easy to sign-up! Just enter your email address in the form below, choose your password, confirm the password, and click the Quick Sign-up button.
+<br /><br />
+
+<?php if (is_string($this->signup_error)) { ?><ul class="errors"><li><?php echo $this->signup_error ?></li></ul><br /><?php } ?>
+
+<form name="signup" method="POST" action="/">
+
+<table id="new-signup-form" class="form">
+	<tr><td class="label">eMail Address:</td>
+		<td class="value"><?php echo $this->emailadd ?></td>
+	</tr>
+	<tr>
+		<td class="label">Password:</td>
+		<td class="value"><?php echo $this->signup_password ?></td>
+	</tr>
+	<tr>
+		<td class="label">Confirm:</td>
+		<td class="value"><?php echo $this->confirm ?></td>
+	</tr>
+</table><!-- /#new-signup-form -->
+
+<div id="new-signup-actions" class="actions">
+	<input type="submit" name="signup" value="Quick Sign-up" onclick="hideForm('new-signup')" />
+	<input type="button" value="Cancel" onclick="hideForm('new-signup')" />	
+</div><!-- /#top-actions -->
+
+<br /><hr /><br />
+The following is NOT required, but it would help you get started even faster using Armadealo.
+Please complete this optional profile information so we can get everything set up for you.
+<br /><br />
+<table id="new-signup-form" class="form">
+	<tr><td class="label">Business Name:</td>
+		<td class="value" colspan="2"><?php echo $this->vendor_name ?></td>
+	</tr>
+	<tr>
+		<td class="label">Your Name:</td>
+		<td class="value" colspan="2"><?php echo $this->contact_name ?></td>
+	</tr>
+	<tr>
+		<td class="label">Phone Number:</td>
+		<td class="value" width="120"><?php echo $this->contact_phone ?></td><td><label class="inputNote"> &nbsp; as in 212-555-1212</label></td>
+	</tr>
+	<tr>
+		<td class="label">Business Address:</td>
+		<td class="value" colspan="2"><?php echo $this->primary_address ?></td>
+	</tr>
+	<tr>
+		<td class="label">City, Zip Code:</td>
+		<td class="value" colspan="2" width="120"><?php echo $this->primary_city ?>, <?php echo $this->primary_zip ?></td>
+	</tr>
+	<tr>
+		<td class="label">State, Country:</td>
+		<td class="value" colspan="2" width="120"><?php echo $this->primary_state ?>, <?php echo $this->primary_country ?></td>
+	</tr>
+</table><!-- /#new-signup-form -->
+
+<div id="new-signup-actions" class="actions">
+	<input type="submit" name="signup" value="Create Your Profile" onclick="hideForm('new-signup')" />
+	<input type="button" value="Cancel" onclick="hideForm('new-signup')" />
+</div><!-- /#top-actions -->
+
+</form>
+
+</div><!-- /#new-signin -->
+<div id="modal" style="display:<?php echo ($this->signin_error || $this->signup_error ? "block" : "none") ?>"></div><!-- /#modal -->

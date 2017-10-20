@@ -1,0 +1,61 @@
+<?php echo $this->doctype() ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<?php echo $this->headTitle() ?>
+
+<meta name="description" content="An online tool for distributing promitions based on your customers location" />
+<meta name="keywords" content="promos, promotions, offers, deals, distribution, marketing, reporting" />
+<meta name="author" content="Shawn Chin" />
+<meta name="copyright" content="Zeeo Interactive" />
+<meta name="ICBM" content="35.121865, -85.358774" />
+<link rel="Shortcut Icon" type="image/x-icon" href="/img/favicon.png" />
+
+<?php echo $this->headLink() ?>
+
+<?php echo $this->headStyle() ?>
+
+<?php echo $this->headScript() ?>
+
+</head>
+<body onload="init()">
+<div id="container">
+<div id="top">
+<div id="header">
+	<div id="logo">
+		<a href="/console/">armadealo</a>
+	</div>
+</div><!-- /#header -->
+</div><!-- /#top -->
+
+<!--
+<div style="background:transparent url(/img/logo-bg.png) repeat-y top left">
+<div style="padding-left:75px;">
+-->
+
+<div id="content">
+
+<?php echo $this->layout()->content ?>
+
+</div><!-- /#content -->
+
+<div id="footer">
+<span class="copy">&copy; 2009. Armadealo, LLC. All rights reserved.</span>
+<span class="top">Jump to the <a href="#top">top</a></span>
+<span class="top"><a href="/service-agreement.html" target="_blank">service agreement</a></span>
+<span class="top"><a href="/privacy-policy.html" target="_blank">privacy policy</a></span>
+</div><!-- /#footer -->
+
+<!--
+</div>
+</div>
+-->
+
+
+
+</div><!-- /#container -->
+</body>
+</html>

@@ -1,0 +1,366 @@
+body {
+	margin:0;
+	padding:0;
+	text-align:center;
+	font:normal 14px Helvetica, Arial, sans-serif;
+/*	background:transparent url(../img/grad-bg.png) repeat-x fixed bottom left; */
+/*	background:#646f00; */
+}
+
+body * {
+	margin:0;
+	padding:0;	
+}
+
+ul, ol {
+	list-style:none;
+}
+
+a, a:link, a:visited {
+	color:#90a000;
+	font-weight:bold;
+}
+
+a:hover {
+	color:#646f00;
+}
+
+td {
+	vertical-align:top;
+}
+
+#container {
+	width:900px;
+	margin:0 auto;
+	text-align:left;
+	padding-right:20px;
+	background:#fff;
+}
+
+#top {
+	padding-bottom:3px;
+}
+
+#logo {
+	margin-left:-75px;
+}
+
+#logo a,
+#logo a:link,
+#logo a:visited {
+	display:block;
+	width:234px;
+	height:50px;
+	overflow:hidden;
+	text-indent:-9999px;
+	background:transparent url(../img/logo.png) 0 0 no-repeat;
+}
+
+#logo a:hover{
+	background-position:0 -50px;
+}
+
+#logo {
+	float:left;
+}
+
+#user {
+	padding:10px 0 0 0;
+	float:right;
+}
+
+#user li {
+	float:left;
+	margin:0 10px 0 0;
+	padding:0 10px 0 0;
+	border-right:#999 1px solid;
+}
+
+#user li.last-c {
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+#guest {
+	padding:0 0 10px 0;
+	float:left;
+}
+
+#guest li {
+	float:left;
+	margin:0 10px 0 0;
+	padding:0 10px 0 0;
+	border-right:#999 1px solid;
+}
+
+#guest li.last-c {
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+#nav {
+	clear:both;
+	font-size:16px;
+	padding-top:8px;
+}
+
+#nav li {
+	float:left;	
+	padding:5px 10px;
+	margin:0 10px 0 0;
+}
+
+#nav li.first-c {
+	padding-left:0;
+}
+
+#nav li.selected {
+	background:#90a000;
+}
+
+#nav li.selected a,
+#nav li.selected a:hover {
+	color:#fff;
+}
+
+#nav a {
+	color:#999;
+}
+
+#nav a:hover {
+
+	color:#646f00;
+}
+
+
+#content {
+	border-top:#90a000 1px solid;
+	clear:both;
+}
+
+h1 {
+	margin:10px 0;
+}
+
+#alert {
+	width:550px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	background:#ffffcc;
+	color:#999;
+	padding:20px;
+	margin:0px 0px 10px 140px;
+}
+
+.errors {
+	font-size:12px;
+	font-weight:bold;
+	background:#ffffcc;
+	color:#c00;
+	padding:4px;
+	width:100%;
+}
+
+.data {
+	margin:10px 0 0 0;
+	width:100%;
+	border-collapse:collapse;
+}
+
+.data tr:hover {
+	background:#fafafa;
+	cursor:pointer;
+}
+
+.data tr.header:hover {
+	background:transparent;
+	cursor:default;
+}
+
+.data tr.new td {
+	background:#ecf4a2;
+}
+
+.data td {
+	border-bottom:#eee 1px dotted;	
+	padding:3px;
+}	
+
+#footer {
+	text-align:left;
+	padding:20px 0px;
+	color:#999
+}
+
+#footer span {
+	padding-right:30px;
+}
+
+.form td {
+	padding-bottom:5px;
+}
+
+#new-store {
+	z-index:2;
+	padding:20px 30px;
+	position:absolute;
+	margin:20px auto;
+	top:0;
+	left:150px;
+	width:600px;
+	border:#000 2px solid;
+	background:#fff;
+}
+
+#new-store h1 {
+	margin-top:0;
+}
+
+#file-upload {
+	z-index:2;
+	padding:20px 30px;
+	position:absolute;
+	margin:20px auto;
+	top:0;
+	left:150px;
+	width:600px;
+	border:#000 2px solid;
+	background:#fff;
+}
+
+#file-upload h1 {
+	margin-top:0;
+}
+
+#new-offer {
+	z-index:2;
+	padding:20px 30px;
+	position:absolute;
+	margin:20px auto;
+	top:0;
+	left:150px;
+	width:600px;
+	border:#000 2px solid;
+	background:#fff;
+}
+
+#new-offer h1 {
+	margin-top:0;
+}
+
+#new-signin {
+	z-index:2;
+	padding:20px 30px;
+	position:absolute;
+	margin:20px auto;
+	top:0;
+	left:150px;
+	width:600px;
+	border:#000 2px solid;
+	background:#fff;
+}
+
+#new-signin h1 {
+	margin-top:0;
+}
+
+#new-signup {
+	z-index:2;
+	padding:20px 30px;
+	position:absolute;
+	margin:20px auto;
+	top:0;
+	left:150px;
+	width:600px;
+	border:#000 2px solid;
+	background:#fff;
+}
+
+#new-signup h1 {
+	margin-top:0;
+}
+
+#modal {
+	z-index:1;
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	opacity:.5;
+	background:#000;
+}
+
+.label {
+	width:130px;	
+	text-align:right;
+	padding-right:15px;
+}
+
+.value input {
+	width:250px;
+}
+
+.value textarea {
+	width:300px;
+}
+
+.value select {
+	width:100px;
+}
+
+#storeCity {
+	width:115px;
+}
+
+#storeZip {
+	width:115px;
+}
+
+#storeState {
+	width:120px;
+}
+
+#storeCountry {
+	width:120px;
+}
+
+#storePhone {
+	width:115px;
+}
+
+#offerDate {
+	width:115px;	
+}
+
+#offerLink {
+	width:200px;	
+}
+
+#new-store-actions {
+	padding-top:20px;
+	text-align:right;
+}
+
+#new-signin-actions {
+	padding-top:20px;
+	text-align:right;
+}
+
+#new-signup-actions {
+	padding-top:20px;
+	text-align:right;
+}
+
+.inputNote {
+	font-size:12px;
+	font-style:italic;
+	color:#999;
+}
+
+#visitor {
+	
+}

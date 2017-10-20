@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>armadealo - stores</title>
+<meta name="description" content="An online tool for distributing promitions based on your customers location" />
+<meta name="keywords" content="promos, promotions, offers, deals, distribution, marketing, reporting" />
+<meta name="author" content="Shawn Chin" />
+<meta name="copyright" content="Zeeo Interactive" />
+<meta name="ICBM" content="35.121865, -85.358774" />
+<link type="text/css" rel="stylesheet" href="css/layout.css" />
+<link rel="Shortcut Icon" type="image/x-icon" href="img/favicon.ico" />
+<script src="js/main.js" type="text/javascript"></script>
+</head>
+<body onload="init()">
+<div id="container">
+<div id="top">
+<div id="header">
+	<div id="logo">
+		<a href="index.html">armadealo</a>
+	</div>
+	<div id="user">
+		<ul>
+			<li class="first-c">logged in as <a href="#">me@shawnchin.net</a></li>
+			<li><a href="#">Profile</a></li>
+			<li><a href="#">Help</a></li>
+			<li class="last-c"><a href="#">Logout</a></li>
+		</ul>
+	</div><!-- /#user-nav -->
+	<div id="nav">
+		<ul>
+			<li class="first-c"><a href="home.html">Home</a></li>
+			<li class="selected"><a href="stores.html">Stores</a></li>
+			<li><a href="offers.html">Offers</a></li>
+			<li><a href="distributions.html">Distributions</a></li>
+			<li><a href="account.html">Account</a></li>
+			<li class="last-c"><a href="reports.html">Reports</a></li>
+		</ul>
+	</div><!-- /nav -->
+</div><!-- /#header -->
+</div><!-- /#top -->
+<div id="content">
+	<h1>Stores <span id="alert">Your store was successfully created. View your <a href="#">new store</a></span></h1>
+	<div id="top-actions" class="actions">
+		<input type="submit" value="Add Store" onclick="showNewStoreForm()"/>
+		<input type="submit" value="Edit" />
+	</div><!-- /#top-actions -->
+	<table class="data">
+		<tr class="header">
+			<td><input id="all" type="checkbox" /></td>
+			<td>Name</td>
+			<td>City</td>
+			<td>State</td>
+			<td>Zip</td>
+			<td>Phone</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td><a href="#">123 Main St. / Boston</a></td>
+			<td>Boston</td>
+			<td>MA</td>
+			<td>02118</td>
+			<td>(617) 257-3005</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td><a href="#">123 Main St. / Boston</a></td>
+			<td>Boston</td>
+			<td>MA</td>
+			<td>02118</td>
+			<td>(617) 257-3005</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td><a href="#">123 Main St. / Boston</a></td>
+			<td>Boston</td>
+			<td>MA</td>
+			<td>02118</td>
+			<td>(617) 257-3005</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td><a href="#">123 Main St. / Boston</a></td>
+			<td>Boston</td>
+			<td>MA</td>
+			<td>02118</td>
+			<td>(617) 257-3005</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td><a href="#">123 Main St. / Boston</a></td>
+			<td>Boston</td>
+			<td>MA</td>
+			<td>02118</td>
+			<td>(617) 257-3005</td>
+		</tr>
+		<tr class="new">
+			<td><input type="checkbox" /></td>
+			<td><a href="#">123 Main St. / Boston</a></td>
+			<td>Boston</td>
+			<td>MA</td>
+			<td>02118</td>
+			<td>(617) 257-3005</td>
+		</tr>
+	</table>
+
+</div><!-- /#content -->
+<div id="footer">
+<span class="copy">Zeeo Interactive &copy;</span>
+<span class="top">Jump to the <a href="#top">top</a></span>
+</div><!-- /#footer -->
+
+<div id="new-store" style="display:none">
+<h1>New Store</h1>
+<table id="new-store-form" class="form">
+	<tr>
+		<td class="label">Name:</td>
+		<td class="value"><input id="storeName" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">Street Address 1:</td>
+		<td class="value"><input id="storeAddress1" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">Street Address 2:</td>
+		<td class="value"><input id="storeAddress2" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">City:</td>
+		<td class="value"><input id="storeCity" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">State:</td>
+		<td class="value">
+			<select id="storeState">
+				<option value="MA">MA</option>
+			</select><!-- /#storeState -->
+		</td>
+	</tr>
+	<tr>
+		<td class="label">Zip:</td>
+		<td class="value"><input id="storeZip" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">Country:</td>
+		<td class="value">
+			<select id="storeCountry">
+				<option value="USA">USA</option>
+			</select><!-- /#storeCountry --></td>
+	</tr>
+	<tr>
+		<td class="label">Phone:</td>
+		<td class="value"><input id="storePhone" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">Hours:</td>
+		<td class="value"><input id="storeHours" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="label">Directions:</td>
+		<td class="value">
+			<textarea id="storeDirections" rows="5" cols="50"></textarea>
+		</td>
+	</tr>
+</table><!-- /#new-store-form -->
+<div id="new-store-actions" class="actions">
+	<input type="submit" value="Add Store" onclick="hideNewStoreForm()" />
+	<input type="submit" value="Cancel" onclick="hideNewStoreForm()" />
+</div><!-- /#top-actions -->
+</div><!-- /#new-store -->
+<div id="modal" style="display:none"></div><!-- /#modal -->
+
+</div><!-- /#container -->
+</body>
+</html>

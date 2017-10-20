@@ -1,0 +1,152 @@
+
+	<h1>Stores <?php if ($this->success) { ?><span id="alert"><?php echo $this->success ?></span><?php } ?></h1>
+
+	<div id="top-actions" class="actions">
+		<input type="submit" value="Add a Store" onclick="showForm('new-store')"/>
+		<input type="submit" value="Bulk Add Stores" onclick="showForm('file-upload')"/>
+<!--
+		<input type="submit" value="Edit checked" disabled />
+		<input type="submit" value="Disable checked" disabled />
+		<input type="submit" value="Enable checked" disabled />
+-->
+	</div><!-- /#top-actions -->
+	<table class="data">
+		<tr class="header">
+			<td><!-- <input id="all" type="checkbox" disabled /> --></td>
+			<td>Name</td>
+			<td>Phone</td>
+			<td>Address</td>
+			<td>City</td>
+			<td>Zip</td>
+			<td>State</td>
+			<td>Country</td>
+			<td>Status</td>
+		</tr>
+
+<?php
+if (is_array($this->stores) && count($this->stores) > 0)
+{
+	foreach ($this->stores as $store)
+	{
+?>
+		<tr>
+			<td><!-- <input type="checkbox" disabled /> --></td>
+			<td><?php echo substr((isset($store['store_title']) ? $store['store_title'] : 'N/A'),0,20) ?></td>
+			<td><?php echo (isset($store['store_phone']) ? $store['store_phone'] : 'N/A') ?></td>
+			<td><?php echo substr((isset($store['store_address']) ? $store['store_address'] : 'N/A'),0,20) ?></td>
+			<td><?php echo substr((isset($store['store_city']) ? $store['store_city'] : 'N/A'),0,20) ?></td>
+			<td><?php echo (isset($store['store_zip']) ? $store['store_zip'] : 'N/A') ?></td>
+			<td><?php echo (isset($store['store_state']) ? $store['store_state'] : 'N/A') ?></td>
+			<td><?php echo (isset($store['store_country']) ? $store['store_country'] : 'N/A') ?></td>
+			<td><?php echo (isset($store['store_status']) ? $store['store_status'] : 'N/A') ?></td>
+		</tr>
+<?php
+	}
+}
+else
+{
+?>
+		<tr><td colspan="10"> - you have not added any stores to the system - </td></tr>
+<?php 
+}
+?>
+
+	</table>
+
+
+
+
+
+
+
+
+<div id="file-upload" style="display:<?php echo ($this->file_error ? "block" : "none") ?>">
+<h1>Upload a file of store locations..</h1>
+
+<?php if (is_string($this->file_error)) { ?><ul class="errors"><li><?php echo $this->file_error ?></li></ul><br /><?php } ?>
+
+<form name="upload" method="POST" enctype="multipart/form-data" action="/console/stores">
+
+If you have your store locations saved in a spreadsheet or database, such as Microsoft Excel or Access,
+you can export a file of Comma Seperated Values (eg. *.CSV file), and use the tool below to do a bulk
+import of your store locations. We'll do the geocoding for you!
+<br /><br />
+We realize that you may have alot of fields in your spreadsheet, for all kinds of information about your stores.
+We only need a few pieces of data to make our system work for you. This tool will let you tell us where to find
+the data we need.
+<br /><br />
+In the boxes below, next to the data items we need to process your file, please enter the column number where that
+data is found in each line of your spreadsheet. For example, if the store's address is the fifth item in every line,
+then enter the number &quot;5&quot; in the "&quot;Address&quot;" box.
+
+<hr style="margin:20px 0px;" />
+
+<table id="file-upload-form" class="form">
+<tr><td width="120"><strong>Store Name</strong></td><td width="80" valign="top"><?php echo $this->ln ?></td><td width="25" rowspan="2"><?php echo $this->fl ?></td><td rowspan="2">Check this box if the first line of your file is a list of column names, and should be ignored.</td></tr>
+<tr><td><strong>Street Address</strong></td><td valign="top"><?php echo $this->la ?></td></tr>
+<tr><td><strong>Zip Code</strong></td><td valign="top"><?php echo $this->lz ?></td></tr>
+<tr><td><strong>Country</strong></td><td valign="top"><?php echo $this->ly ?></td><td rowspan="3">&nbsp;</td><td rowspan="3" valign="top">Browse for your file..<label class="inputNote"> &nbsp; ( only *.TXT or *.CSV files )</label><br /><?php echo $this->csv ?></td></tr>
+<tr><td><strong>Phone Number</strong></td><td valign="top"><?php echo $this->lp ?></td></tr>
+</table>
+
+<div id="new-store-actions" class="actions">
+	<input type="submit" name="upload_csv" value="Upload Your Store File" onclick="hideForm('file-upload')" />
+	<input type="button" value="Cancel" onclick="hideForm('file-upload')" />
+</div><!-- /#top-actions -->
+
+</form>
+
+</div>
+
+
+
+<div id="new-store" style="display:<?php echo ($this->save_error ? "block" : "none") ?>">
+<h1>Add a Store</h1>
+
+<?php if (is_string($this->save_error)) { ?><ul class="errors"><li><?php echo $this->save_error ?></li></ul><br /><?php } ?>
+
+Please complete the simple form below. All fieds are required. We will geocode your store location for longitude and latitude.
+After creating a store, make sure we've found the right information for it by checking the city and state saved.
+<br /><br />
+
+<form name="store" method="POST" action="/console/stores">
+
+<table id="new-store-form" class="form">
+	<tr><td class="label">Store Name:</td>
+		<td class="value" colspan="2"><?php echo $this->st ?></td>
+	</tr>
+	<tr>
+		<td class="label">Street Address:</td>
+		<td class="value" colspan="2"><?php echo $this->sa ?></td>
+	</tr>
+	<tr>
+		<td class="label">Zip Code, Country:</td>
+		<td class="value" width="120"><?php echo $this->sz ?></td><td>, <?php echo $this->sy ?></td>
+	</tr>
+	<tr>
+		<td class="label">Phone Number:</td>
+		<td class="value" width="120"><?php echo $this->sp ?></td><td><label class="inputNote"> &nbsp; as in 212-555-1212</label></td>
+	</tr>
+<!--
+	<tr>
+		<td class="label">Hours:</td>
+		<td class="value" colspan="2"><?php echo $this->soh ?><?php echo $this->sch ?></td>
+	</tr>
+	<tr>
+		<td class="label">Directions:</td>
+		<td class="value" colspan="2">
+						  <?php echo $this->sd ?>
+		</td>
+	</tr>
+-->
+</table><!-- /#new-store-form -->
+
+<div id="new-store-actions" class="actions">
+	<input type="submit" name="save_store" value="Add Your Store" onclick="hideForm('new-store')" />
+	<input type="button" value="Cancel" onclick="hideForm('new-store')" />
+</div><!-- /#top-actions -->
+
+</form>
+
+</div><!-- /#new-store -->
+<div id="modal" style="display:<?php echo ($this->file_error || $this->save_error ? "block" : "none") ?>"></div><!-- /#modal -->
